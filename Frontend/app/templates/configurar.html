@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN -->
+
+    <title>TChapinas</title>
+
+    <style>
+        .bg-pattern {
+          background-color: #d3d3d3;
+          background-image: url("https://i.pinimg.com/1200x/ea/61/23/ea6123f403ebc08658ee18d4908cd573.jpg");
+        }
+      </style>
+      
+  </head>
+  <body>
+    {% include "navbar.html" %}
+
+    <div class="h-screen mt-[70px] bg-pattern flex items-center justify-center">
+        <div class="flex w-full h-full">
+          <!-- Left Side -->
+          <div
+            class="w-1/2 bg-gray-400/50 flex flex-col justify-center items-center space-y-4"
+          >
+            <div class="text-center w-full px-8">
+              <h1 class="text-4xl font-bold text-black">Subir Archivo</h1>
+              <p class="text-black mt-4">
+                Selecciona el Archivo .xml de configuración
+              </p>
+  
+              <form enctype="multipart/form-data" method="POST" action="{% url 'visualizarXML' %}">
+                  {% csrf_token %}
+                  <input type="file" id="file" name="file" accept="text/xml" class="mt-4 w-full" required />
+                  <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      Carga Tu Archivo
+                  </button>
+              </form>
+              
+              {% if xml_content %}
+              <textarea class="w-full h-96 mt-4 rounded-lg p-4" name="xml" id="xml" placeholder="Aquí se mostrará el contenido del archivo .xml">{{ xml_content }}
+              </textarea>
+              
+              <!-- HIDDEN -->
+              <form enctype="multipart/form-data" method="POST" action="{% url 'subirXML' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="xml" value="{{ xml_content|escape }}" />
+                  <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      Preciona Para Subir 
+                  </button>
+              </form>
+              {% else %}
+              <textarea class="w-full h-96 mt-4 rounded-lg p-4" name="xml" id="xml" placeholder=""></textarea>
+              {% endif %}
+            </div>
+          </div>
+  
+          <!-- Right Side -->
+          <div
+            class="w-1/2 bg-blue-100/50 flex flex-col justify-center items-center space-y-4"
+          >
+            <div class="text-center w-full px-8">
+              <h1 class="text-4xl font-bold text-black">Respuesta</h1>
+              <textarea
+                class="w-full h-96 mt-4 rounded-lg p-4"
+                placeholder="Aquí se mostrará la respuesta del servidor"
+                enabled
+              >{% if response %}{{ response }}{% endif %}
+          </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

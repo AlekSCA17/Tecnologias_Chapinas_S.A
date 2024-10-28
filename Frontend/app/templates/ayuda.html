@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>TChapinas</title>
+
+    <style>
+      .bg-pattern {
+        background-color: #d3d3d3;
+        background-image: url("https://i.postimg.cc/vTZr6jKR/wp7841727.webp");
+      }
+    </style>
+  </head>
+  <body>
+    {% include "navbar.html" %}
+
+    <div class="h-screen mt-[70px] bg-pattern flex items-center justify-center">
+      <div class="flex flex-col items-center space-y-4 bg-gray-400/50 p-8 rounded-lg">
+        <h1 class="text-4xl font-bold text-black">Opciones</h1>
+
+        <a href="{% url 'datos_estudiante' %}"
+           class="bg-[#bd5507] hover:bg-orange-600 text-white font-bold py-2 px-4 rounded w-full text-center">
+           Informacion del estudiante
+        </a>
+
+        <a href="{% url 'doc' %}"
+           class="bg-[#9fa167] hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full text-center">
+           Documentación
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
