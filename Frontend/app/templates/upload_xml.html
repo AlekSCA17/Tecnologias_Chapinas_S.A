@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir XML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded shadow">
+        <h1 class="text-2xl font-bold mb-4">Subir Archivo XML</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Enviar
+            </button>
+        </form>
+
+        {% if response_data %}
+            <h2 class="text-xl font-bold mt-8">Respuesta del Backend:</h2>
+            <pre class="bg-gray-200 p-4 rounded mt-2 whitespace-pre-wrap">{{ response_data }}</pre>
+        {% endif %}
+    </div>
+</body>
+</html>

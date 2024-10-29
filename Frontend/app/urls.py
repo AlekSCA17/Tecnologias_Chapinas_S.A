@@ -15,4 +15,6 @@ urlpatterns = [
    path('ayuda/', views.ayuda, name='ayuda'),
    path('datos_estudiante/', views.datos_estudiante, name='datos_estudiante'),
    path('doc/', views.doc, name='doc'),
+   path('reset-db/', views.reset_db, name='reset_db'),  
+   
 ]
